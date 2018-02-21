@@ -1,0 +1,22 @@
+---
+- hosts: all
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  pre_tasks:
+  - name: Repository Setup
+    template:
+      src: ./open_three-tier-app.repo
+      dest: /etc/yum.repos.d/open_three-tier-app.repo
+      mode: 0644
+
+- hosts: apps
+  roles:
+   - apps
+
+- hosts: frontends
+  roles:
+   - frontends
+
+- hosts: appdbs
+  roles: 
+   - appdbs 

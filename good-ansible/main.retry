@@ -1,0 +1,5 @@
+app1.{{ GUID }}.internal
+app2.{{ GUID }}.internal
+appdb1.{{ GUID }}.internal
+frontend1.{{ GUID }}.internal
+support1.{{ GUID }}.internal

@@ -1,0 +1,31 @@
+- name: Installing  tomcat on App Servers 
+  package:
+   name: tomcat
+   state: latest
+- name: enable tomcat at boot
+  service:
+   name: tomcat
+   enabled: yes
+
+- name: Create ansible tomcat directory on App Servers
+  file:
+   path: /usr/share/tomcat/webapps/ansible
+   state: directory
+
+#- name: Copy static index.html to tomcat webapps/ansible/index.html on App Servers
+#  template:
+#   src: index.html.j2
+#   dest: /usr/share/tomcat/webapps/ansible/index.html
+#   mode: 0644
+
+- name: copy static index.html to tomcat webapps/ansible/index.html on App Servers
+  template:
+   src: index.html.j2
+   dest: /usr/share/tomcat/webapps/ansible/index.html
+  with_indexed_items:
+   - "{{ groups['apps'] }}"
+
+- name: Start tomcat on App Servers
+  service:
+   name: tomcat
+   state: started
