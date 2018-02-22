@@ -7,7 +7,7 @@
    name: postgresql
    enabled: yes
 - name: check if /var/lib/pgsql/data direcory
-  command: ls -al /var/lib/pgsql/data
+  command: ls /var/lib/pgsql/data
   register: check_pgsql_dir
 - name: initilize postgres
   command: postgresql-setup initdb
