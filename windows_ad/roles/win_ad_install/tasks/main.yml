@@ -1,9 +1,9 @@
-- name: Install AD-Domain-Services feature
+- name: Install AD Domain Services Feature on "{{ inventory_hostname }}"
   win_feature:
    name: AD-Domain-Services
    include_management_tools: yes
    include_sub_features: yes
-- name: Setup Active Directory Controller
+- name: Setup Active Directory Controller on "{{ inventory_hostname }}"
   win_domain:
    dns_domain_name: "{{ ad_domain_name }}"
    safe_mode_password: "{{ ad_safe_mode_password }}"
@@ -13,7 +13,7 @@
   win_reboot:
   when: active_directory_controllers.reboot_required
 
-- name: List DCs in domain
+- name: List of Domain Controllers in the Domain
   win_shell: "nltest /dclist:{{ ad_domain_name }}"
   register: domain_list
 
