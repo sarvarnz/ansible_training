@@ -29,3 +29,18 @@
   service:
    name: tomcat
    state: started
+
+- name: Install Apache on App Servers
+  yum:
+   name: httpd
+   state: latest
+
+- name: Enable Apache at boot on App Servers
+  service:
+   name: httpd
+   enabled: yes
+
+- name: Start Apache on App Servers
+  service:
+   name: httpd
+   state: started
