@@ -11,12 +11,23 @@
   file:
    path: /usr/share/tomcat/webapps/ansible
    state: directory
-
-#- name: Copy static index.html to tomcat webapps/ansible/index.html on App Servers
-#  template:
-#   src: index.html.j2
-#   dest: /usr/share/tomcat/webapps/ansible/index.html
-#   mode: 0644
+  with_indexed_items:
+   - "{{ groups['apps'] }}
+    
+- name: Create ansible tomcat webapps ROOT directory on App Servers
+  file:
+   path: /usr/share/tomcat/webapps/ROOT
+   state: directory
+  with_indexed_items:
+   - "{{ groups['apps'] }}
+   
+- name: Copy static index.html to tomcat webapps/ROOT/index.html on App Servers
+  template:
+   src: index.html.j2
+   dest: /usr/share/tomcat/webapps/ROOT/index.html
+   mode: 0644
+  with_indexed_items:
+   - "{{ groups['apps'] }}
 
 - name: copy static index.html to tomcat webapps/ansible/index.html on App Servers
   template:
