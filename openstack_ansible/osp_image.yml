@@ -13,4 +13,3 @@
       disk_format: qcow2
       state: present
       filename: /root/rhel-guest-image-7.2-20151102.0.x86_64.qcow2
-

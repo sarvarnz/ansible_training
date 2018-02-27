@@ -7,7 +7,7 @@
    flavor: m2.small
    security_groups: "{{ security_group_name }}"
    key_name: ansible_ssh
-   wait: yes
+   wait: true
    nics:
     - net-name: int_network
    userdata: |
